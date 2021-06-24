@@ -7,22 +7,18 @@ const router = express.Router()
 const db = require("./database/db.js")
 
 router.get('/posts', (req, res) => {
-  db.all(`SELECT * FROM posts`, function (err, rows) {
-    if (err) {
-      return console.log(err)
-    }
-
-    const posts = rows.map(({ id, title, description, image, published_at }) => {
-      return {
-        id,
-        title,
-        description,
-        image,
-        published_at
+  db.all(
+    `
+    SELECT id, title, description, image, published_at 
+    FROM posts
+    `,
+    function (err, rows) {
+      if (err) {
+        return console.log(err)
       }
-    })
-    return res.json(posts)
-  })
+      return res.json(rows)
+    }
+  )
 
 })
 

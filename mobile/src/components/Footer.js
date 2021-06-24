@@ -1,11 +1,15 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
+import colors from '../styles/colors';
+import fonts from '../styles/fonts';
 
 export default function Footer() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>© 2021  Simetra - Laboratório Veterinário.</Text>
-      <Text style={styles.text}>Todos os direitos reservados.</Text>
+      <Text style={styles.text}>
+        © 2021  Simetra - Laboratório Veterinário.{'\n'}
+        Todos os direitos reservados.
+      </Text>
     </View>
   );
 }
@@ -13,13 +17,15 @@ export default function Footer() {
 const styles = StyleSheet.create({
   container: {
     marginTop: 80,
-    backgroundColor: '#444444',
+    backgroundColor: colors.gray_footer,
     alignItems: 'center',
     justifyContent: 'center',
     height: 114,
   },
   text: {
     color: '#EBEBEB',
-    fontSize: 10
+    fontSize: 11,
+    textAlign: 'center',
+    fontFamily: fonts.text,
   }
 });

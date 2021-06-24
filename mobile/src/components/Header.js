@@ -1,21 +1,27 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, Platform, StatusBar, SafeAreaView } from 'react-native';
 
 import Logo from '../../assets/header.svg'
+import colors from '../styles/colors';
 
 export default function Header() {
   return (
-    <View style={styles.container}>
-      <Logo style={styles.logo} />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <Logo
+        style={styles.logo}
+        width={150}
+        height={40}
+      />
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#0DADAE',
+    backgroundColor: colors.green,
     alignItems: 'center',
-    paddingTop: 30,
+    justifyContent: 'center',
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
   },
   logo: {
     marginVertical: 12,

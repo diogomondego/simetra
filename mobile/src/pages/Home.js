@@ -2,7 +2,10 @@ import React from 'react';
 import { StyleSheet, View, Text, ScrollView } from 'react-native';
 
 import Posts from '../components/Posts'
-import Footer from '../components/Footer';
+import Footer from '../components/Footer'
+
+import colors from '../styles/colors'
+import fonts from '../styles/fonts';
 
 export default function Home({ navigation }) {
   return (
@@ -27,11 +30,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30
   },
   title: {
-    marginTop: 39,
-    marginBottom: 18,
-    fontFamily: 'TitilliumWeb_700Bold',
+    marginTop: 25,
+    marginBottom: 10,
+    fontFamily: fonts.heading,
     fontSize: 32,
-    color: '#666666'
+    color: colors.gray
   },
   rectangle: {
     width: 29,
@@ -39,7 +42,7 @@ const styles = StyleSheet.create({
       { rotateZ: "-1.98deg" }
     ],
     borderWidth: 4,
-    borderColor: '#FBB03F',
-    marginBottom: 31
+    borderColor: colors.yellow,
+    marginBottom: 25
   }
 });

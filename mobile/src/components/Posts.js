@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
+import { RectButton } from 'react-native-gesture-handler'
 
 import api from '../services/api'
+import colors from '../styles/colors';
+import fonts from '../styles/fonts';
 
 export default function Posts({ navigation }) {
 
@@ -16,10 +19,10 @@ export default function Posts({ navigation }) {
   }, [])
 
   return posts
-    .sort((a, b) => b.id - a.id)
+    .sort((a, b) => b.published_at.localeCompare(a.published_at))
     .map(post => {
       return (
-        <TouchableOpacity
+        <RectButton
           style={styles.container}
           key={post.id}
           onPress={() => navigation.navigate('Post', { id: post.id })}
@@ -30,12 +33,22 @@ export default function Posts({ navigation }) {
           />
           <View style={styles.containerInside} >
             <View style={styles.box} >
-              <Text style={styles.title}>{post.title}</Text>
-              <Text style={styles.description}>{post.description}</Text>
+              <Text
+                style={styles.title}
+                numberOfLines={1}
+              >
+                {post.title}
+              </Text>
+              <Text
+                style={styles.description}
+                numberOfLines={2}
+              >
+                {post.description}
+              </Text>
             </View>
             <Text style={styles.readMore}>LER MAIS</Text>
           </View>
-        </TouchableOpacity>
+        </RectButton>
       )
     })
 }
@@ -43,51 +56,56 @@ export default function Posts({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    marginVertical: 21,
-    borderRadius: 6.5,
-    borderWidth: 0.5,
-    // padding: 5,
-    // shadowColor: "#000",
-    // shadowOffset: {
-    //   width: 0,
-    //   height: 12,
-    // },
-    // shadowOpacity: 0.58,
-    // shadowRadius: 16.00,
-    // elevation: 5,
+    marginVertical: 20,
+    borderRadius: 7.5,
+
+    // Para funcionar o box shadow necessita de:
+    backgroundColor: '#FFF',
+
+    // Box shadow iOS
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+
+    // Box shadow Android
+    elevation: 6,
   },
   image: {
-    width: 108,
-    height: 118,
+    width: 110,
+    height: 120,
     resizeMode: 'cover',
-    borderTopLeftRadius: 6.5,
-    borderBottomLeftRadius: 6.5
+    borderTopLeftRadius: 7.5,
+    borderBottomLeftRadius: 7.5,
   },
   containerInside: {
     flex: 1,
+    paddingVertical: 10,
   },
   box: {
     paddingHorizontal: 20,
     flex: 1,
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   title: {
-    fontFamily: 'TitilliumWeb_700Bold',
-    fontSize: 13,
-    color: '#0DADAE',
+    fontFamily: fonts.heading,
+    fontSize: 14,
+    color: colors.green,
   },
   description: {
-    fontFamily: 'TitilliumWeb_400Regular',
-    fontSize: 12,
-    color: '#666666'
+    fontFamily: fonts.text,
+    fontSize: 13,
+    color: colors.gray,
   },
   readMore: {
-    fontFamily: 'TitilliumWeb_700Bold',
-    fontSize: 9.8,
-    color: '#0DADAE',
+    fontFamily: fonts.heading,
+    fontSize: 11,
+    color: colors.green,
     textAlign: 'right',
     paddingRight: 30,
-    paddingBottom: 10,
-    letterSpacing: 0.1
+    letterSpacing: 1,
   },
 });

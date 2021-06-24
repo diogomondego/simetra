@@ -17,15 +17,27 @@ db.serialize(() => {
     `)
 
     // 2 inserir dados na tabela
-    // const query = `
-    //     INSERT INTO posts (
-    //         title,
-    //         description,
-    //         text,
-    //         image
-    //     ) VALUES (?,?,?,?)
-    // `
+    const query = `
+        INSERT INTO posts (
+            title,
+            description,
+            text,
+            image
+        ) VALUES (?,?,?,?)
+    `
 
+    // const values = [
+    //     "Nova unidade Simetra",
+    //     "Para sua comodidade nós inauguramos mais uma unidade...Para sua comodidade nós inauguramos mais uma unidade...",
+    //     "O laboratório Simetra traz mais uma novidade para sua clínica: novos exames de bioquímica básica em até 6 horas. Ampliamos nossa estrtura para melhor atende-lo. O Simetra está em constante investimento para atender você cada vez melhor. \n\nNovos exames: \n\n- SÓDIO\n - POTÁSSIO\n - BILIRRUBINAS TOTAIS E FRAÇÕES\n - CREATININA URINÁRIA\n - AMILASE",
+    //     "https://assets.website-files.com/5ce2e8de2575f27cdf7815f1/5e1635e3546baa82ad81a907_GettyImages-529116816.jpg",
+    // ]
+    const values = [
+        "Nova unidade Simetra Nova unidade Simetra Nova unidade Simetra",
+        "Para sua comodidade nós inauguramos mais uma unidade...",
+        "O laboratório Simetra traz mais uma novidade para sua clínica: novos exames de bioquímica básica em até 6 horas. Ampliamos nossa estrtura para melhor atende-lo. O Simetra está em constante investimento para atender você cada vez melhor. \n\nNovos exames: \n\n- SÓDIO\n - POTÁSSIO\n - BILIRRUBINAS TOTAIS E FRAÇÕES\n - CREATININA URINÁRIA\n - AMILASE",
+        "https://assets.website-files.com/5ce2e8de2575f27cdf7815f1/5e1635e3546baa82ad81a907_GettyImages-529116816.jpg",
+    ]
     // const values = [
     //     "Nova unidade Simetra",
     //     "Para sua comodidade nós inauguramos mais uma unidade...",
@@ -57,14 +69,14 @@ db.serialize(() => {
     // db.run(query, values, afterInsertData)
 
     // 3 consultar os dados da tabela
-    db.all(`SELECT * FROM posts`, function (err, rows) {
-        if (err) {
-            return console.log(err)
-        }
+    // db.all(`SELECT * FROM posts`, function (err, rows) {
+    //     if (err) {
+    //         return console.log(err)
+    //     }
 
-        console.log("Aqui estão seus registros: ")
-        console.log(rows)
-    })
+    //     console.log("Aqui estão seus registros: ")
+    //     console.log(rows)
+    // })
 
     // 4 deletar um dado da tabela
     // db.run(`DELETE FROM posts WHERE id = ?`, [4], function (err) {

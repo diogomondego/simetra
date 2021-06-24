@@ -1,5 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
+import { StatusBar } from 'expo-status-bar';
 
 import AppLoading from 'expo-app-loading';
 import { TitilliumWeb_400Regular, TitilliumWeb_700Bold, useFonts } from '@expo-google-fonts/titillium-web';
@@ -25,7 +25,7 @@ export default function App() {
 
   return (
     <>
-      <StatusBar style="light" backgroundColor='#0DADAE' />
+      <StatusBar style="light" />
       <Header />
       <NavigationContainer>
         <Stack.Navigator headerMode='none'>
