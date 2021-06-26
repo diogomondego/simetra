@@ -1,56 +1,45 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image } from 'react-native';
-import { RectButton } from 'react-native-gesture-handler'
+import React from 'react';
+import { StyleSheet, View, Text, Image } from 'react-native';
 
-import api from '../services/api'
+import { RectButton } from 'react-native-gesture-handler'
+import { useNavigation } from '@react-navigation/core'
+
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 
-export default function Posts({ navigation }) {
+export default function Posts({ post }) {
 
-  const [posts, setPosts] = useState([])
-
-  useEffect(() => {
-    async function loadPosts() {
-      const res = await api.get('/posts')
-      setPosts(res.data)
-    }
-    loadPosts()
-  }, [])
-
-  return posts
-    .sort((a, b) => b.published_at.localeCompare(a.published_at))
-    .map(post => {
-      return (
-        <RectButton
-          style={styles.container}
-          key={post.id}
-          onPress={() => navigation.navigate('Post', { id: post.id })}
-        >
-          <Image
-            style={styles.image}
-            source={{ uri: `${post.image}` }}
-          />
-          <View style={styles.containerInside} >
-            <View style={styles.box} >
-              <Text
-                style={styles.title}
-                numberOfLines={1}
-              >
-                {post.title}
-              </Text>
-              <Text
-                style={styles.description}
-                numberOfLines={2}
-              >
-                {post.description}
-              </Text>
-            </View>
-            <Text style={styles.readMore}>LER MAIS</Text>
-          </View>
-        </RectButton>
-      )
-    })
+  const navigation = useNavigation()
+  return (
+    <RectButton
+      style={styles.container}
+      key={post.id}
+      onPress={() => navigation.navigate('Post', { id: post.id })}
+    >
+      <Image
+        style={styles.image}
+        source={{ uri: `${post.image}` }}
+      />
+      <View style={styles.containerInside} >
+        <View style={styles.box} >
+          <Text
+            style={styles.title}
+            numberOfLines={1}
+          >
+            {post.title}
+          </Text>
+          <Text
+            style={styles.description}
+            numberOfLines={2}
+          >
+            {post.description}
+          </Text>
+        </View>
+        <Text style={styles.readMore}>LER MAIS</Text>
+      </View>
+    </RectButton>
+  )
+  // })
 }
 
 const styles = StyleSheet.create({
@@ -73,6 +62,7 @@ const styles = StyleSheet.create({
 
     // Box shadow Android
     elevation: 6,
+    marginHorizontal: 30
   },
   image: {
     width: 110,
