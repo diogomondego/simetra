@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Image, ScrollView, Dimensions } from 'react-native';
 
+import { useNavigation } from '@react-navigation/core'
+import { AntDesign } from '@expo/vector-icons'
+
 import Footer from '../components/Footer';
+
 import api from '../services/api'
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 
-export default function Post({ route, navigation }) {
+export default function Post({ route }) {
+  const navigation = useNavigation()
   const id = route.params.id
   const [post, setPost] = useState([])
 
@@ -35,7 +40,9 @@ export default function Post({ route, navigation }) {
               style={styles.homeButton}
               onPress={() => navigation.goBack()}
             >
-              <Text style={styles.homeText}>Início <Text style={styles.iconRight}> > </Text> Blog</Text>
+              <Text style={styles.homeText}>
+                Início <AntDesign name='right' style={styles.iconRight} /> Blog
+              </Text>
             </TouchableOpacity>
 
             <Text style={styles.title}>{item.title}</Text>
@@ -74,7 +81,7 @@ const styles = StyleSheet.create({
     color: colors.green,
   },
   iconRight: {
-    color: colors.gray,
+    color: '#C4C4C4'
   },
   title: {
     marginTop: 24,

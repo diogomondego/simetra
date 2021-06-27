@@ -26,15 +26,9 @@ db.serialize(() => {
         ) VALUES (?,?,?,?)
     `
 
-    // const values = [
-    //     "Nova unidade Simetra",
-    //     "Para sua comodidade nós inauguramos mais uma unidade...Para sua comodidade nós inauguramos mais uma unidade...",
-    //     "O laboratório Simetra traz mais uma novidade para sua clínica: novos exames de bioquímica básica em até 6 horas. Ampliamos nossa estrtura para melhor atende-lo. O Simetra está em constante investimento para atender você cada vez melhor. \n\nNovos exames: \n\n- SÓDIO\n - POTÁSSIO\n - BILIRRUBINAS TOTAIS E FRAÇÕES\n - CREATININA URINÁRIA\n - AMILASE",
-    //     "https://assets.website-files.com/5ce2e8de2575f27cdf7815f1/5e1635e3546baa82ad81a907_GettyImages-529116816.jpg",
-    // ]
     const values = [
-        "Nova unidade Simetra Nova unidade Simetra Nova unidade Simetra",
-        "Para sua comodidade nós inauguramos mais uma unidade...",
+        "Novos exames de bioquímica básica",
+        "Para sua comodidade nós inauguramos mais uma unidade",
         "O laboratório Simetra traz mais uma novidade para sua clínica: novos exames de bioquímica básica em até 6 horas. Ampliamos nossa estrtura para melhor atende-lo. O Simetra está em constante investimento para atender você cada vez melhor. \n\nNovos exames: \n\n- SÓDIO\n - POTÁSSIO\n - BILIRRUBINAS TOTAIS E FRAÇÕES\n - CREATININA URINÁRIA\n - AMILASE",
         "https://assets.website-files.com/5ce2e8de2575f27cdf7815f1/5e1635e3546baa82ad81a907_GettyImages-529116816.jpg",
     ]

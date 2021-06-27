@@ -1,30 +1,33 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text, FlatList, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, Text, FlatList, ActivityIndicator, RefreshControl } from 'react-native';
 
 import Posts from '../components/Posts'
 import Footer from '../components/Footer'
 
 import api from '../services/api'
 import colors from '../styles/colors'
-import fonts from '../styles/fonts';
-
-
+import fonts from '../styles/fonts'
 
 export default function Home() {
   const [posts, setPosts] = useState([])
-
   const [page, setPage] = useState(1)
   const [loadingMore, setLoadingMore] = useState(false)
+  const [loadedAll, setLoadedAll] = useState(false)
+  const [refreshing, setRefreshing] = useState(false)
 
-  async function loadPosts() {
-    const { data } = await api.get(`/posts/?limit=4&page=${page}`)
+  async function fetchPosts(pageNumber = page) {
+    const { data } = await api.get(`/posts/?limit=6&page=${pageNumber}`)
+    if (data == '') {
+      setLoadedAll(true)
+    }
 
-    if (page > 1) {
+    if (pageNumber > 1) {
       setPosts(oldValue => [...oldValue, ...data])
     } else {
       setPosts(data)
     }
 
+    setRefreshing(false)
     setLoadingMore(false)
   }
 
@@ -34,12 +37,21 @@ export default function Home() {
     }
 
     setLoadingMore(true)
-    setPage(oldValue => oldValue + 1)
-    loadPosts()
+    // setPage(oldValue => oldValue + 1)
+    fetchPosts(setPage(oldValue => oldValue + 1))
+  }
+
+  function handleRefresh() {
+    setRefreshing(true)
+    setLoadedAll(false)
+
+    setPage(1)
+
+    fetchPosts(1)
   }
 
   useEffect(() => {
-    loadPosts()
+    fetchPosts()
   }, [])
 
   function header() {
@@ -68,23 +80,32 @@ export default function Home() {
   return (
     <FlatList
       contentContainerStyle={styles.container}
-      ListHeaderComponent={header}
 
       data={
-        posts
-          .sort((a, b) => b.published_at.localeCompare(a.published_at))
+        posts.sort((a, b) => b.published_at.localeCompare(a.published_at))
       }
       keyExtractor={item => String(item.id)}
+
+      ListHeaderComponent={header}
       renderItem={({ item }) => render(item)}
+      ListFooterComponent={footer}
+      ListFooterComponentStyle={styles.footer}
+      refreshControl={
+        <RefreshControl
+          refreshing={refreshing}
+          onRefresh={handleRefresh}
+        />
+      }
 
       // Quando o usuário chegar a 10% do final da List
       onEndReachedThreshold={0.1}
       // O que quero fazer quando o de cima acontecer
       // Vou querer retirar a distante desse Reached
-      onEndReached={({ distanceFromEnd }) => handleFetchMore(distanceFromEnd)}
+      onEndReached={({ distanceFromEnd }) => {
+        !loadedAll &&
+          handleFetchMore(distanceFromEnd)
+      }}
 
-      ListFooterComponent={footer}
-      ListFooterComponentStyle={styles.footer}
     />
   );
 }
