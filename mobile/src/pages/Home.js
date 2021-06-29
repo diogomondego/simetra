@@ -37,7 +37,6 @@ export default function Home() {
     }
 
     setLoadingMore(true)
-    // setPage(oldValue => oldValue + 1)
     fetchPosts(setPage(oldValue => oldValue + 1))
   }
 
@@ -113,7 +112,7 @@ export default function Home() {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    backgroundColor: '#FFF',
+    backgroundColor: colors.white_background,
   },
   header: {
     paddingHorizontal: 30,

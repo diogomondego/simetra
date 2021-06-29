@@ -11,15 +11,17 @@ import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 
 export default function Post({ route }) {
-  const navigation = useNavigation()
-  const id = route.params.id
   const [post, setPost] = useState([])
 
+  const id = route.params.id
+  const navigation = useNavigation()
+
+  async function loadPost() {
+    const { data } = await api.get(`/posts/${id}`)
+    setPost(data)
+  }
+
   useEffect(() => {
-    async function loadPost() {
-      const res = await api.get(`/posts/${id}`)
-      setPost(res.data)
-    }
     loadPost()
   }, [])
 
@@ -32,39 +34,42 @@ export default function Post({ route }) {
   }
 
   return (
-    post.map(item => {
-      return (
-        <ScrollView contentContainerStyle={styles.scroll} key={item.id} >
-          <View style={styles.container}>
-            <TouchableOpacity
-              style={styles.homeButton}
-              onPress={() => navigation.goBack()}
-            >
-              <Text style={styles.homeText}>
-                Início <AntDesign name='right' style={styles.iconRight} /> Blog
-              </Text>
-            </TouchableOpacity>
+    <ScrollView
+      contentContainerStyle={styles.scroll}
 
-            <Text style={styles.title}>{item.title}</Text>
+      // Persistir o scrollIndicator na borda 0 (zero) a direita
+      scrollIndicatorInsets={
+        { left: 1 }
+      }
+    >
+      <View style={styles.container}>
+        <TouchableOpacity
+          style={styles.homeButton}
+          onPress={() => navigation.goBack()}
+        >
+          <Text style={styles.homeText}>
+            Início <AntDesign name='right' style={styles.iconRight} /> Blog
+          </Text>
+        </TouchableOpacity>
 
-            <Image
-              style={styles.image}
-              source={{ uri: `${item.image}` }}
-            />
-            <Text style={styles.text}>{item.text}</Text>
-            <View style={styles.rectangle} />
-          </View>
-          <Footer />
-        </ScrollView>
-      )
-    })
+        <Text style={styles.title}>{post.title}</Text>
+
+        <Image
+          style={styles.image}
+          source={{ uri: `${post.image}` }}
+        />
+        <Text style={styles.text}>{post.text}</Text>
+        <View style={styles.rectangle} />
+      </View>
+      <Footer />
+    </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
   scroll: {
     flexGrow: 1,
-    backgroundColor: '#FFF',
+    backgroundColor: colors.white_background,
     justifyContent: 'space-between'
   },
   container: {

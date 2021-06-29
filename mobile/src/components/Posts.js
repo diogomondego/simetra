@@ -39,7 +39,6 @@ export default function Posts({ post }) {
       </View>
     </RectButton>
   )
-  // })
 }
 
 const styles = StyleSheet.create({
@@ -49,7 +48,7 @@ const styles = StyleSheet.create({
     borderRadius: 7.5,
 
     // Para funcionar o box shadow necessita de:
-    backgroundColor: '#FFF',
+    backgroundColor: colors.white_background,
 
     // Box shadow iOS
     shadowColor: "#000",

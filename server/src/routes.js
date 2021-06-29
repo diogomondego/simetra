@@ -31,13 +31,13 @@ router.get('/posts', (req, res) => {
 
 router.get('/posts/:id', (req, res) => {
   const id = req.params.id
-  db.all(`SELECT * FROM posts WHERE id = ${id}`, function (err, row) {
+  db.all(`SELECT * FROM posts WHERE id = ${id} LIMIT 1`, function (err, row) {
     if (err) {
       return console.log(err)
     }
 
-    const posts = row
-    return res.json(posts)
+    const post = row[0]
+    return res.json(post)
   })
 })
 
