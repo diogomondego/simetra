@@ -19,6 +19,7 @@ export default function App() {
     TitilliumWeb_400Regular,
     TitilliumWeb_700Bold,
   })
+  // App só será carregado após carregamento das fontes
   if (!fontsLoaded) {
     return <AppLoading />;
   }
@@ -27,6 +28,7 @@ export default function App() {
     <>
       <StatusBar style="light" />
       <Header />
+      {/* Criar navegação passando as telas */}
       <NavigationContainer>
         <Stack.Navigator headerMode='none'>
           <Stack.Screen name='Home' component={Home} />

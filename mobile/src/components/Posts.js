@@ -14,6 +14,7 @@ export default function Posts({ post }) {
     <RectButton
       style={styles.container}
       key={post.id}
+      // Passar dado 'id' pela navigation
       onPress={() => navigation.navigate('Post', { id: post.id })}
     >
       <Image

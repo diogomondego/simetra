@@ -15,8 +15,11 @@ export default function Home() {
   const [loadedAll, setLoadedAll] = useState(false)
   const [refreshing, setRefreshing] = useState(false)
 
+  // Buscar posts
   async function fetchPosts(pageNumber = page) {
     const { data } = await api.get(`/posts/?limit=6&page=${pageNumber}`)
+
+    // Verificar se todos os posts foram carregados
     if (data == '') {
       setLoadedAll(true)
     }
@@ -31,6 +34,7 @@ export default function Home() {
     setLoadingMore(false)
   }
 
+  // Buscar mais posts
   function handleFetchMore(distance) {
     if (distance < 1) {
       return
@@ -40,6 +44,7 @@ export default function Home() {
     fetchPosts(setPage(oldValue => oldValue + 1))
   }
 
+  // Recarregar posts
   function handleRefresh() {
     setRefreshing(true)
     setLoadedAll(false)

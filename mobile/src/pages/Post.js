@@ -10,6 +10,7 @@ import api from '../services/api'
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 
+// route busca dados passados na navigation
 export default function Post({ route }) {
   const [post, setPost] = useState([])
 
