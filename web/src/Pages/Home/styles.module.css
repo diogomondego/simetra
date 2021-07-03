@@ -1,0 +1,28 @@
+main {
+  max-width: 1000px;
+  display: flex;
+  margin: 0 auto;
+}
+
+div > .header {
+  margin: 2rem 0;
+}
+
+.header > h1 {
+  margin-bottom: 0.5rem;
+}
+
+.header > .rectangle {
+  width: 2rem;
+  border: 4px solid #FBB03F;
+  background-color: #FBB03F;
+}
+
+/* section { */
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: center; */
+/* text-align: center; */
+/* align-content: center; */
+  
+/* } */
