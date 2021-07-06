@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import styles from './styles.module.css'
 
 import { Header } from '../../Components/Header'
+import { Footer } from '../../Components/Footer'
+
 import api from '../../services/api'
 
 export function Home() {
@@ -21,7 +23,7 @@ export function Home() {
   const allPosts = posts.slice(1, posts.length)
 
   return (
-    <div>
+    <div className={styles.home}>
       <Header />
       <main>
         <div>
@@ -71,6 +73,7 @@ export function Home() {
           </section>
         </div>
       </main>
+      <Footer />
     </div>
   )
 }

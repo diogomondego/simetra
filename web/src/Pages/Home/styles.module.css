@@ -1,39 +1,50 @@
+/* Para permitir o "flex:1" no main */
+.home{
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
 main {
   max-width: 1100px;
   display: flex;
   margin: 0 auto;
   padding: 0 2rem;
+
+  /* Ocupar todo o tamanho para o footer ficar embaixo */
+  flex: 1;
 }
 
+/* Titulo "h1" e "div" rectangle */
 div > .header {
   margin: 2rem 0;
 }
-
 .header > .title {
   margin-bottom: 0.5rem;
   font-size: 2.5rem;
 }
-
 .header > .rectangle {
   width: 2.5rem;
   border: 4px solid #FBB03F;
   background-color: #FBB03F;
 }
 
+/* layout de todos os posts após o primeiro */
 .allPosts {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
 }
 
+/* Posts */
 .article {
   display: flex;
   box-shadow: 0 0 6px lightgray;
-  margin: 1rem 0;
   border-radius: 5px;
 }
 .latestPost .article{
   height: 16rem;
+  margin-bottom: 20px;
 }
 .allPosts .article {
   flex-direction: column;
@@ -41,8 +52,8 @@ div > .header {
 }
 
 .article > .aside {
-  flex: 2.1;
   display: flex;
+  flex: 2.1;
 }
 
 .aside > img {
@@ -65,6 +76,9 @@ div > .header {
   flex-direction: column;
   justify-content: space-between;
 }
+.allPosts .article > .container {
+  flex: 1.5;
+}
 .latestPost .article > .container {
   padding: 3rem 2rem;
 }
@@ -72,6 +86,7 @@ div > .header {
   padding: 2rem;
 }
 
+/* Conteúdo do container de cada article */
 .container > .content {
   display: flex;
   align-content: center;
@@ -79,9 +94,12 @@ div > .header {
   flex-direction: column;
 }
 
+/* Titulo dos posts */
 .content > .title {
   line-height: 2rem;
   width: fit-content;
+  
+  /* Permitir no máximo 2 linhas */
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -89,13 +107,11 @@ div > .header {
   -webkit-box-orient: vertical;
 }
 
-.title:hover {
-  cursor: default;
-}
-
+/* Descrição de cada post */
 .content > .description {
-  font-size: 1.2rem;
   margin-top: 0.5rem;
+
+  /* Permitir no máximo 2 linhas */
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -115,14 +131,18 @@ div > .header {
 }
 
 a:hover {
-  filter: brightness(0.95);
+  filter: brightness(0.9);
   text-decoration: underline;
 }
 
 
-@media(max-width: 800px){
+@media(max-width: 900px){
   .article > .aside {
     flex: 4.6;
+    display: flex;
+  }
+  .allPosts .article > .container {
+    flex: 4;
     display: flex;
   }
   .allPosts {
