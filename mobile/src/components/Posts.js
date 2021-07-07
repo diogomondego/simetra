@@ -21,6 +21,7 @@ export default function Posts({ post }) {
         style={styles.image}
         source={{ uri: `${post.image}` }}
       />
+      <View style={styles.rectangle} />
       <View style={styles.containerInside} >
         <View style={styles.box} >
           <Text
@@ -70,6 +71,18 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     borderTopLeftRadius: 7.5,
     borderBottomLeftRadius: 7.5,
+  },
+  rectangle: {
+    position: 'absolute',
+    left: 96,
+    bottom: 16,
+    width: 30,
+    borderWidth: 1.5,
+    borderColor: colors.yellow,
+    backgroundColor: colors.yellow,
+    transform: [
+      { rotateZ: "1.2deg" }
+    ],
   },
   containerInside: {
     flex: 1,
