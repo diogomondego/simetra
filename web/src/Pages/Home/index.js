@@ -44,7 +44,7 @@ export function Home() {
                       <p className={styles.description}>{post.description}</p>
                     </div>
                     <div className={styles.readMore}>
-                      <a href="/">LEIA MAIS</a>
+                      <a href='/'>LEIA MAIS</a>
                     </div>
                   </div>
                 </article>
