@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Image, ScrollView, Dimensions } from 'react-native';
+import { StyleSheet, View, Text, TouchableOpacity, Image, ScrollView, Dimensions, ActivityIndicator } from 'react-native';
 
 import { useNavigation } from '@react-navigation/core'
 import { AntDesign } from '@expo/vector-icons'
@@ -29,7 +29,7 @@ export default function Post({ route }) {
   while (post.length === 0) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text>Carregando...</Text>
+        <ActivityIndicator color={colors.green} />
       </View>
     )
   }
