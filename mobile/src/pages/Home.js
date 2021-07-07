@@ -3,6 +3,7 @@ import { StyleSheet, View, Text, FlatList, ActivityIndicator, RefreshControl } f
 
 import Posts from '../components/Posts'
 import Footer from '../components/Footer'
+import { PostsSkeleton } from '../components/PostsSkeleton';
 
 import api from '../services/api'
 import colors from '../styles/colors'
@@ -63,6 +64,13 @@ export default function Home() {
       <View style={styles.header}>
         <Text style={styles.title}>Blog</Text>
         <View style={styles.rectangle} />
+        {posts.length === 0 ?
+          <View>
+            <PostsSkeleton />
+            <PostsSkeleton />
+          </View> :
+          <></>
+        }
       </View>
     )
   }

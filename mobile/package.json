@@ -10,6 +10,7 @@
   "dependencies": {
     "@expo-google-fonts/titillium-web": "^0.1.0",
     "@react-native-community/masked-view": "0.1.10",
+    "@react-native-masked-view/masked-view": "^0.2.5",
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.5",
     "axios": "^0.21.1",
@@ -24,6 +25,7 @@
     "react-native-reanimated": "~2.1.0",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.0.0",
+    "react-native-skeleton-placeholder": "^4.0.0",
     "react-native-svg": "12.1.0",
     "react-native-svg-transformer": "^0.14.3",
     "react-native-web": "~0.13.12"
