@@ -2,28 +2,51 @@ import React from 'react'
 import { View, StyleSheet } from "react-native";
 
 import SkeletonPlaceholder from "react-native-skeleton-placeholder";
+import colors from '../styles/colors';
 
 export function PostsSkeleton() {
   return (
-    <SkeletonPlaceholder>
-      <View style={styles.container}>
-        <View style={styles.image} />
-        <View style={styles.containerInside}>
-          <View style={styles.box}>
-            <View style={styles.title} />
-            <View style={styles.description} />
+    <View style={styles.container}>
+      <SkeletonPlaceholder>
+        <View style={styles.skeleton}>
+          <View style={styles.image} />
+          <View style={styles.containerInside}>
+            <View style={styles.box}>
+              <View style={styles.title} />
+              <View style={styles.description} />
+            </View>
+            <View style={styles.boxReadMore}>
+              <View style={styles.readMore} />
+            </View>
           </View>
-          <View style={styles.readMore} />
         </View>
-      </View>
-    </SkeletonPlaceholder>
+      </SkeletonPlaceholder>
+    </View>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
     marginVertical: 20,
+    borderRadius: 7.5,
+
+    // Para funcionar o box shadow necessita de:
+    backgroundColor: colors.white_background,
+
+    // Box shadow iOS
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+
+    // Box shadow Android
+    elevation: 6,
+  },
+  skeleton: {
+    flexDirection: "row",
     flex: 1
   },
   image: {
@@ -53,8 +76,10 @@ const styles = StyleSheet.create({
     marginTop: 8,
     borderRadius: 4,
   },
+  boxReadMore: {
+    paddingHorizontal: 30
+  },
   readMore: {
-    paddingRight: 30,
     alignSelf: 'flex-end',
     width: 60,
     height: 14,
