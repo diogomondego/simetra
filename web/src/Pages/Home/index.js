@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import styles from './styles.module.css'
 
+import { Link } from "react-router-dom"
+
 import { Header } from '../../Components/Header'
 import { Footer } from '../../Components/Footer'
 
@@ -44,7 +46,7 @@ export function Home() {
                       <p className={styles.description}>{post.description}</p>
                     </div>
                     <div className={styles.readMore}>
-                      <a href='/'>LEIA MAIS</a>
+                      <Link to={`/post/${post.id}`}>LEIA MAIS</Link>
                     </div>
                   </div>
                 </article>
@@ -64,7 +66,7 @@ export function Home() {
                       <p className={styles.description}>{post.description}</p>
                     </div>
                     <div className={styles.readMore}>
-                      <a href="/">LEIA MAIS</a>
+                      <Link to={`/post/${post.id}`}>LEIA MAIS</Link>
                     </div>
                   </div>
                 </article>

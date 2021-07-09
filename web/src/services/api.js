@@ -2,8 +2,7 @@ import axios from 'axios'
 
 const api = axios.create({
   baseURL: `http://localhost:3333/`
-  // baseURL: `http://192.168.0.15:3333/`
-  // baseURL: `http://192.168.100.10:3333/`
+  // baseURL: 'https://api-simetra.herokuapp.com/'
 })
 
 export default api
